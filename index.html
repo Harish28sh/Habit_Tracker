@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Streakify // Spreadsheet Habit Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="page-shell">
+        <nav class="top-nav">
+            <div class="brand">STREAKIFY</div>
+            <div class="nav-links">
+                <a href="#" class="active">Home</a>
+                <a href="#">My Habits</a>
+                <a href="#">Insights</a>
+                <a href="#">Community</a>
+            </div>
+            <div class="profile-badge">A</div>
+        </nav>
+
+        <section class="hero-card">
+            <div>
+                <h1>Streak Summary</h1>
+                <p id="hero-summary">5 Habits, 80% Success</p>
+            </div>
+            <button class="primary-btn" id="add-new-habit">Add New Habit</button>
+        </section>
+
+        <section class="picker-panel">
+            <div class="picker-item">
+                <label for="month-picker">Month</label>
+                <select id="month-picker"></select>
+            </div>
+            <div class="picker-item">
+                <label for="year-picker">Year</label>
+                <select id="year-picker"></select>
+            </div>
+            <button class="secondary-btn" id="export-csv">Export CSV</button>
+        </section>
+
+        <section class="week-controls">
+            <button id="week-prev" class="nav-arrow" aria-label="Previous week">‹</button>
+            <div class="week-range" id="week-range">Week of Jan 1 - Jan 7</div>
+            <button id="week-next" class="nav-arrow" aria-label="Next week">›</button>
+        </section>
+
+        <section class="month-calendar-card">
+            <div class="calendar-header">
+                <span class="calendar-label">Month view</span>
+                <span class="calendar-month" id="calendar-month">January 2026</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid"></div>
+        </section>
+
+        <section class="dashboard-card">
+            <div class="table-header-row">
+                <h2>This Week</h2>
+                <p>Track your habits across the week and mark progress instantly.</p>
+            </div>
+
+            <div class="table-responsive">
+                <table id="habit-table">
+                    <thead>
+                        <tr id="habit-header-row">
+                            <!-- Headers generated automatically -->
+                        </tr>
+                    </thead>
+                    <tbody id="habit-table-body">
+                        <!-- rows inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <footer class="app-footer">
+            <a href="#">About</a>
+            <a href="#">Privacy</a>
+            <a href="#">Contact</a>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
