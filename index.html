@@ -14,31 +14,35 @@
         <nav class="top-nav">
             <div class="brand">STREAKIFY</div>
             <div class="nav-links">
-                <a href="#" class="active">Home</a>
-                <a href="#">My Habits</a>
-                <a href="#">Insights</a>
-                <a href="#">Community</a>
+                <a href="#" id="nav-home" class="active">Home</a>
+                <a href="#" id="nav-habits">My Habits</a>
             </div>
-            <div class="profile-badge">A</div>
         </nav>
 
         <section class="hero-card">
             <div>
                 <h1>Streak Summary</h1>
-                <p id="hero-summary">5 Habits, 80% Success</p>
+                <p id="hero-summary">Track your daily wins and keep the momentum alive.</p>
             </div>
-            <button class="primary-btn" id="add-new-habit">Add New Habit</button>
+            <div class="hero-metrics">
+                <div class="hero-metric">
+                    <span>🔥</span>
+                    <div>
+                        <strong id="hero-streak-count">12</strong>
+                        <small>Current streak</small>
+                    </div>
+                </div>
+                <div class="hero-metric">
+                    <span>🎯</span>
+                    <div>
+                        <strong id="hero-success-rate">80%</strong>
+                        <small>Weekly success</small>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section class="picker-panel">
-            <div class="picker-item">
-                <label for="month-picker">Month</label>
-                <select id="month-picker"></select>
-            </div>
-            <div class="picker-item">
-                <label for="year-picker">Year</label>
-                <select id="year-picker"></select>
-            </div>
             <button class="secondary-btn" id="export-csv">Export CSV</button>
         </section>
 
@@ -48,6 +52,10 @@
             <button id="week-next" class="nav-arrow" aria-label="Next week">›</button>
         </section>
 
+        <div class="current-week-action">
+            <button id="go-current-week" class="secondary-btn hidden">Go to current week</button>
+        </div>
+
         <section class="month-calendar-card">
             <div class="calendar-header">
                 <span class="calendar-label">Month view</span>
@@ -56,7 +64,7 @@
             <div class="calendar-grid" id="calendar-grid"></div>
         </section>
 
-        <section class="dashboard-card">
+        <section class="dashboard-card" id="home-page">
             <div class="table-header-row">
                 <h2>This Week</h2>
                 <p>Track your habits across the week and mark progress instantly.</p>
@@ -73,6 +81,30 @@
                         <!-- rows inserted here -->
                     </tbody>
                 </table>
+            </div>
+        </section>
+
+        <section class="dashboard-card hidden" id="habits-page">
+            <div class="table-header-row">
+                <h2>My Habits</h2>
+                <p>Add or remove habits from your tracker.</p>
+            </div>
+            <div class="habit-manager">
+                <div class="habit-input-row">
+                    <input id="new-habit-name" type="text" placeholder="New habit name" />
+                    <button id="add-habit-btn" class="primary-btn">Add Habit</button>
+                </div>
+                <div class="table-responsive">
+                    <table id="habits-list-table">
+                        <thead>
+                            <tr>
+                                <th>Habit</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="habits-list-body"></tbody>
+                    </table>
+                </div>
             </div>
         </section>
 
