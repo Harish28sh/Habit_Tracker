@@ -337,12 +337,25 @@ function renderHabitTable() {
   updateSummary(habits);
 }
 
+function getTodayIndexWithinWeek() {
+  const today = new Date();
+  const day = today.getDay();
+  return day === 0 ? 6 : day - 1;
+}
+
+function getTodayCompletedCount(habits) {
+  if (!isCurrentWeek(activeWeekStart) || habits.length === 0) return 0;
+  const todayIndex = getTodayIndexWithinWeek();
+  return getDailyCompletionCount(todayIndex, habits);
+}
+
 function updateSummary(habits) {
   const total = habits.length;
   const completedDays = habits.reduce((sum, habit) => sum + habit.days.filter(Boolean).length, 0);
   const totalDays = total * WEEK_DAYS.length;
   const success = totalDays ? Math.round((completedDays / totalDays) * 100) : 0;
   const maxStreak = habits.reduce((max, habit) => Math.max(max, habit.streak || 0), 0);
+  const todayCompleted = getTodayCompletedCount(habits);
   const hero = document.querySelector('.hero-card');
   if (!hero) return;
   hero.querySelector('p').textContent = `${completedDays} of ${totalDays} habit checks completed this week`;
@@ -352,6 +365,15 @@ function updateSummary(habits) {
 
   const successRateElem = document.getElementById('hero-success-rate');
   if (successRateElem) successRateElem.textContent = `${success}%`;
+
+  const todayCountElem = document.getElementById('hero-today-count');
+  if (todayCountElem) todayCountElem.textContent = total ? `${todayCompleted}/${total}` : '0/0';
+
+  const todayMetric = document.getElementById('hero-today-metric');
+  if (todayMetric) {
+    const onTrack = total > 0 && todayCompleted >= Math.ceil(total / 2);
+    todayMetric.classList.toggle('today-on-track', onTrack);
+  }
 }
 
 function promptNewHabit() {
@@ -384,6 +406,15 @@ function initializeApp() {
   setActiveWeek(getCurrentWeekStart());
   document.getElementById('nav-home').addEventListener('click', (event) => { event.preventDefault(); switchTab('home'); });
   document.getElementById('nav-habits').addEventListener('click', (event) => { event.preventDefault(); switchTab('habits'); });
+  const heroStartBtn = document.getElementById('hero-start-btn');
+  if (heroStartBtn) {
+    heroStartBtn.addEventListener('click', (event) => {
+      event.preventDefault();
+      switchTab('home');
+      const homePage = document.getElementById('home-page');
+      if (homePage) homePage.scrollIntoView({ behavior: 'smooth' });
+    });
+  }
   document.getElementById('add-habit-btn').addEventListener('click', addHabitFromManager);
   document.getElementById('new-habit-name').addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {

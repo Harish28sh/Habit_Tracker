@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Streakify // Spreadsheet Habit Dashboard</title>
+    <title>Habit Tracker</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +12,10 @@
 <body>
     <div class="page-shell">
         <nav class="top-nav">
-            <div class="brand">STREAKIFY</div>
+            <div class="brand">
+                <span>HABIT TRACKER</span>
+                <small>Daily momentum made visible</small>
+            </div>
             <div class="nav-links">
                 <a href="#" id="nav-home" class="active">Home</a>
                 <a href="#" id="nav-habits">My Habits</a>
@@ -20,9 +23,12 @@
         </nav>
 
         <section class="hero-card">
-            <div>
-                <h1>Streak Summary</h1>
-                <p id="hero-summary">Track your daily wins and keep the momentum alive.</p>
+            <div class="hero-copy">
+                <div class="hero-header-row">
+                    <h1>Streak Summary</h1>
+                </div>
+                <p id="hero-summary">Daily wins build habits — check one more box today and keep your momentum rolling.</p>
+                <a href="#home-page" id="hero-start-btn" class="primary-btn hero-button">Start tracking today</a>
             </div>
             <div class="hero-metrics">
                 <div class="hero-metric">
@@ -37,6 +43,13 @@
                     <div>
                         <strong id="hero-success-rate">80%</strong>
                         <small>Weekly success</small>
+                    </div>
+                </div>
+                <div class="hero-metric" id="hero-today-metric">
+                    <span>✅</span>
+                    <div>
+                        <strong id="hero-today-count">0/0</strong>
+                        <small>Habits done today</small>
                     </div>
                 </div>
             </div>
@@ -107,12 +120,6 @@
                 </div>
             </div>
         </section>
-
-        <footer class="app-footer">
-            <a href="#">About</a>
-            <a href="#">Privacy</a>
-            <a href="#">Contact</a>
-        </footer>
     </div>
 
     <script src="script.js"></script>
